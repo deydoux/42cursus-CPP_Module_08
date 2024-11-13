@@ -19,10 +19,6 @@ $(BUILD_DIR)/%.o: %.cpp
 	@$(MKDIR) $(@D)
 	$(CXX) $(CXXFLAGS) -o $@ -c	$<
 
-$(BUILD_DIR)/%.o: %.tpp
-	@$(MKDIR) $(@D)
-	$(CXX) $(CXXFLAGS) -o $@ -c	$<
-
 $(NAME): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
