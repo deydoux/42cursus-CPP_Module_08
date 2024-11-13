@@ -1,5 +1,7 @@
+#ifndef EASYFIND_TPP
+#define EASYFIND_TPP
+
 #include "easyfind.hpp"
-#include <iostream>
 
 template <typename T>
 typename T::iterator easyfind(T container, int value) {
@@ -8,3 +10,5 @@ typename T::iterator easyfind(T container, int value) {
 		throw (std::invalid_argument("Value not found in container"));
 	return (it);
 }
+
+#endif

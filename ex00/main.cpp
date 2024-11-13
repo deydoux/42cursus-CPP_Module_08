@@ -1,6 +1,5 @@
-#include <iostream>
 #include <vector>
-#include "easyfind.tpp"
+#include "easyfind.hpp"
 
 int main() {
 	std::vector<int> vec;
