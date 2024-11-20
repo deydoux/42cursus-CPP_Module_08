@@ -32,6 +32,10 @@ void Span::addNumber(const int &n) {
 	_length++;
 }
 
+void Span::addNumbers(const std::vector<int> &numbers) {
+	std::for_each(numbers.begin(), numbers.end(), addNumber);
+}
+
 unsigned int Span::shortestSpan() const {
 	if (_length < 2)
 		throw (std::range_error("Not enough elements in array"));
