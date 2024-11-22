@@ -1,6 +1,8 @@
 NAME = ex01
 
-SOURCES = main.cpp
+SOURCES = \
+main.cpp \
+Span.cpp \
 
 CXX = c++
 CXXFLAGS = -MD -std=c++98 -Wall -Wextra -Werror

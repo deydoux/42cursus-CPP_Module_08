@@ -1,14 +1,14 @@
 #include "Span.hpp"
 
-Span::Span(): _array(), _size(0), _length(0) {
+Span::Span(): _vec(), _length(0), _size(0) {
 	std::cerr << "Default Span constructor called" << std::endl;
 }
 
-Span::Span(const unsigned int &size): _array(), _size(size), _length(0) {
+Span::Span(const unsigned int &size): _vec(), _length(0), _size(size) {
 	std::cerr << "Parametric Span constructor called" << std::endl;
 }
 
-Span::Span(const Span &other) {
+Span::Span(const Span &other): _vec(other._vec), _length(other._length), _size(other._size) {
 	std::cerr << "Span copy constructor called" << std::endl;
 }
 
@@ -18,7 +18,7 @@ Span::~Span() {
 
 Span &Span::operator=(const Span &rhs) {
 	std::cerr << "Span copy assignement operator called" << std::endl;
-	_array = rhs._array;
+	_vec = rhs._vec;
 	_size = rhs._size;
 	_length = rhs._length;
 	return (*this);
@@ -26,28 +26,29 @@ Span &Span::operator=(const Span &rhs) {
 
 void Span::addNumber(const int &n) {
 	if (_length >= _size)
-		throw (std::length_error("Array is full"));
-	_array.push_back(n);
-	std::sort(_array.begin(), _array.end());
+		throw (std::length_error("Span is full"));
+	_vec.push_back(n);
+	std::sort(_vec.begin(), _vec.end());
 	_length++;
 }
 
-void Span::addNumbers(const std::vector<int> &numbers) {
-	std::for_each(numbers.begin(), numbers.end(), addNumber);
+void Span::addNumbers(std::vector<int>::iterator first, std::vector<int>::iterator last) {
+	while (first != last)
+		addNumber(*first++);
 }
 
-unsigned int Span::shortestSpan() const {
+int Span::shortestSpan() const {
 	if (_length < 2)
-		throw (std::range_error("Not enough elements in array"));
-	unsigned int span = _array[1] - _array[0];
+		throw (std::range_error("Not enough elements in span"));
+	int span = _vec[1] - _vec[0];
 	for (unsigned int i = 2; i < _length; i++)
-		if (span > _array[i] - _array[i - 1])
-			span = _array[i] - _array[i - 1];
+		if (span > _vec[i] - _vec[i - 1])
+			span = _vec[i] - _vec[i - 1];
 	return (span);
 }
 
-unsigned int Span::longestSpan() const {
+int Span::longestSpan() const {
 	if (_length < 2)
-		throw (std::range_error("Not enough elements in array"));
-	return (*std::max_element(_array.begin(), _array.end()) - *std::min_element(_array.begin(), _array.end()));
+		throw (std::range_error("Not enough elements in span"));
+	return (*std::max_element(_vec.begin(), _vec.end()) - *std::min_element(_vec.begin(), _vec.end()));
 }

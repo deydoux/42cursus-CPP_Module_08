@@ -7,7 +7,7 @@
 
 class Span {
 private:
-	std::vector<int> _array;
+	std::vector<int> _vec;
 	unsigned int _length;
 	unsigned int _size;
 public:
@@ -17,9 +17,9 @@ public:
 	~Span();
 	Span &operator=(const Span &rhs);
 	void addNumber(const int &n);
-	void addNumbers(const std::vector<int> &numbers);
-	unsigned int shortestSpan() const;
-	unsigned int longestSpan() const;
+	void addNumbers(std::vector<int>::iterator first, std::vector<int>::iterator last);
+	int shortestSpan() const;
+	int longestSpan() const;
 };
 
 #endif
