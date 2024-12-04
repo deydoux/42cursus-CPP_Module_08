@@ -1,21 +1,14 @@
 #include "Span.hpp"
 
 int main() {
-	std::vector<int> vec;
-	vec.push_back(6);
-	vec.push_back(3);
-	vec.push_back(17);
-	vec.push_back(9);
-	vec.push_back(11);
-	vec.push_back(15);
-
 	Span span(5);
 	try {
-		span.addNumbers(vec.begin(), vec.end());
+		span.addNumbers((int[]){6, 3, 17, 9, 11, 15}, 6);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 
+	span.addNumbers((int[]){6, 3, 17, 9, 11}, 5);
 	std::cout << "span: " << span.shortestSpan() << " " << span.longestSpan() << std::endl << std::endl;
 
 	Span spanCopy(3);

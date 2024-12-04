@@ -36,9 +36,13 @@ void Span::addNumber(const int &n) {
 	_length++;
 }
 
-void Span::addNumbers(std::vector<int>::iterator first, std::vector<int>::iterator last) {
-	while (first != last)
-		addNumber(*first++);
+void Span::addNumbers(int tab[], unsigned int size) {
+	if (size + _length > _size)
+		throw (std::length_error("Span is full"));
+
+	_vec.insert(_vec.end(), tab, tab + size);
+	_length += size;
+	std::sort(_vec.begin(), _vec.end());
 }
 
 int Span::shortestSpan() const {
