@@ -2,10 +2,12 @@
 
 Span::Span(): _vec(), _length(0), _size(0) {
 	std::cerr << "Default Span constructor called" << std::endl;
+	_vec.reserve(_size);
 }
 
 Span::Span(const unsigned int &size): _vec(), _length(0), _size(size) {
 	std::cerr << "Parametric Span constructor called" << std::endl;
+	_vec.reserve(_size);
 }
 
 Span::Span(const Span &other): _vec(other._vec), _length(other._length), _size(other._size) {
@@ -27,8 +29,10 @@ Span &Span::operator=(const Span &rhs) {
 void Span::addNumber(const int &n) {
 	if (_length >= _size)
 		throw (std::length_error("Span is full"));
-	_vec.push_back(n);
-	std::sort(_vec.begin(), _vec.end());
+
+	std::vector<int>::iterator it = std::lower_bound(_vec.begin(), _vec.end(), n, std::less<int>());
+	_vec.insert(it, n);
+
 	_length++;
 }
 

@@ -42,4 +42,9 @@ int main() {
 	spanCopy.addNumber(2);
 	std::cout << "spanCopy: " << spanCopy.shortestSpan() << " " << spanCopy.longestSpan() << std::endl;
 	std::cout << "span: " << span.shortestSpan() << " " << span.longestSpan() << std::endl << std::endl;
+
+	Span large(100000);
+	std::srand(time(NULL));
+	for (unsigned int i = 0; i < 100000; i++)
+		large.addNumber(std::rand());
 }
